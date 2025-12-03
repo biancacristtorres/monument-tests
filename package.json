@@ -1,0 +1,27 @@
+{
+  "name": "monument-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biancacristtorres/monument-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/biancacristtorres/monument-tests/issues"
+  },
+  "homepage": "https://github.com/biancacristtorres/monument-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^24.10.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
