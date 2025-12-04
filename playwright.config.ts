@@ -1,7 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import { ENV } from './src/config/env';
 
 export default defineConfig({
   expect: {
@@ -23,7 +21,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     browserName: 'chromium',
     headless: false,
-    baseURL: process.env.MONUMENT_BASE_URL ?? "https://monument.stg.monument.io"
+    baseURL: ENV.MONUMENT_BASE_URL
   },
 
   /* Configure projects for major browsers */

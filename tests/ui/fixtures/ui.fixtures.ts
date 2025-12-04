@@ -1,6 +1,6 @@
 import { test as base } from '@playwright/test';
-import { LoginPage } from '../../src/ui/pages/LoginPage';
-import { DashboardPage } from '../../src/ui/pages/DashboardPage';
+import { LoginPage } from '../../../src/ui/pages/LoginPage';
+import { DashboardPage } from '../../../src/ui/pages/DashboardPage';
 
 type AppFixtures = {
   loginPage: LoginPage;

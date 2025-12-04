@@ -1,7 +1,9 @@
-import { test, expect } from '../fixtures/app.fixtures';
-import { users } from "../../src/config/credentials"
+import { test, expect } from '../ui/fixtures/ui.fixtures';
+import { users } from "../../src/config/credentials";
+import { ErrorMessages } from "../../src/constants/messages/ErrorMessages";
+import { faker } from '@faker-js/faker';
 
-test("[ @ui @smoke ] User with valid credentials can log in successfully", async ({ loginPage, dashboardPage }) => {
+test("[ @ui @smoke @sc1 ] User with valid credentials can log in successfully", async ({ loginPage, dashboardPage }) => {
   await loginPage.goto();
   expect(loginPage.isLoaded).toBeTruthy();
   await loginPage.enterEmailUsername(users.admin.username);
@@ -10,13 +12,23 @@ test("[ @ui @smoke ] User with valid credentials can log in successfully", async
   expect(dashboardPage.isLoaded).toBeTruthy();
 });
 
-test.only("[ @ui ] Login fails with an invalid password", async ({ loginPage }) => {
+test("[ @ui @sc2] Login fails with an invalid password", async ({ loginPage }) => {
   await loginPage.goto();
   expect(loginPage.isLoaded).toBeTruthy();
   await loginPage.enterEmailUsername(users.admin.username);
-  await loginPage.enterPassword('s');
+  await loginPage.enterPassword(faker.string.alphanumeric(5));
   await loginPage.chooseSignIn();
-  expect(await loginPage.getToasterMessage()).toEqual('The email address / username or password you entered is incorrect.');
+  expect(await loginPage.getToasterMessage()).toEqual(ErrorMessages.INVALID_LOGIN);
+
+});
+
+test("[ @ui @sc3] Login fails with an invalid username", async ({ loginPage }) => {
+  await loginPage.goto();
+  expect(loginPage.isLoaded).toBeTruthy();
+  await loginPage.enterEmailUsername(faker.internet.email());
+  await loginPage.enterPassword(users.admin.password);
+  await loginPage.chooseSignIn();
+  expect(await loginPage.getToasterMessage()).toEqual(ErrorMessages.INVALID_LOGIN);
 
 });
 

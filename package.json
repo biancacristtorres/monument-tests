@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": { "test": "npx playwright test"},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/biancacristtorres/monument-tests.git"
@@ -22,6 +22,7 @@
     "@types/node": "^24.10.1"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.1.0",
     "dotenv": "^17.2.3"
   }
 }
