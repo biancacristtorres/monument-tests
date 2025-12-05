@@ -3,13 +3,13 @@ export const MonumentEndpoints = {
         LOGIN: "/auth/login",
         ME: "/auth/me",
     },
-    USER: {
-        ACCOUNT: {
+    USER_ACCOUNT: {
             ROLES: "/userAccount/roles",
-            LIST: "/userAccount"
-        }
+            BASE: "/userAccount"
+        
     },
     FACILITIES: {
-        USER: "/facilities/user-facilities"
+        USER: "/facilities/user-facilities",
+        PAGINATED_USER: "/facilities/paginated-user-facilities",
     }
 } as const;

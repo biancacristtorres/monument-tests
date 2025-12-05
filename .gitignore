@@ -10,3 +10,12 @@ node_modules/
 # Credentials
 src/config/credentials.ts
 .env
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Test storage states 
+/tests/ui/storages/*.json

@@ -1,13 +1,20 @@
 import { SortDirection } from "../enums/SortDirection";
-import { AccountStatus } from "../enums/AccountStatus";
 import { PageLimit } from "../enums/PageLimit";
+import { AccountStatus } from "../enums/AccountStatus";
+
+export enum OrderField {
+  FirstName = "firstName",
+  LastName = "lastName",
+  RootRoleName = "rootRoleName",
+  Email = "email",
+}
 
 export type UserAccountFilters = {
   status?: AccountStatus[];
-  roleId?: string[];
-  facilityId?: string[];
+  roles?: string[];
+  facilities?: string[];
   page?: number;
-  orderBy?: Record<string, SortDirection>;
+  orderBy?: [OrderField, SortDirection][];
   nameOrEmailSearch?: string[];
   limit?: PageLimit;
 };
