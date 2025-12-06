@@ -47,7 +47,6 @@ HTTP communication abstraction layer.
 
 - **`IHttpClient.ts`** - HTTP client contract
 - **`PlaywrightHttpClient.ts`** - Implementation using Playwright context API
-- **`HttpHeaders.ts`** - HTTP header constants
 
 #### 2.2 **Monument** (`src/integration/monument/`)
 
@@ -87,9 +86,11 @@ application/services/
 │   └── MonumentAuthService.ts      # Authentication
 ├── facilities/
 │   └── MonumentFacilitiesService.ts # Facility management
-└── userAccount/
-    ├── MonumentUserAccountService.ts
-    └── userAccountQueryBuilder.ts  # Query params builder
+├── userAccount/
+│   ├── MonumentUserAccountService.ts
+│   └── userAccountQueryBuilder.ts  # Query params builder
+└── utils/
+    └── headerBuilders.ts           # HTTP header builder functions
 ```
 
 **Constants:**

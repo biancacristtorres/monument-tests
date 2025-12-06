@@ -1,18 +1,16 @@
 import { IHttpClient } from '../../../../infra/http/IHttpClient';
 import { APIResponse } from '@playwright/test';
 import { MonumentEndpoints } from '../../../constants/MonumentEndpoints';
-import { HttpHeaders } from '../../../../infra/http/constants/HttpHeaders'
 import { UserAccountFilters } from '../../../domain/types/UserAccountFilters';
 import { CreateUserAccountRequest } from '../../../domain/models/users/CreateUserAccountRequest';
 import { buildListUserAccountFiltering } from './userAccountQueryBuilder';
+import { buildAuthHeaders } from '../utils/headerBuilders';
 
 export class MonumentUserAccountService {
   constructor(private readonly client: IHttpClient) { }
 
   getAllAccountRoles(cookie: string): Promise<APIResponse> {
-    return this.client.get(MonumentEndpoints.USER_ACCOUNT.ROLES, {
-      [HttpHeaders.COOKIE]: cookie,
-    });
+    return this.client.get(MonumentEndpoints.USER_ACCOUNT.ROLES, buildAuthHeaders(cookie));
   }
 
   getUserAccounts(
@@ -21,9 +19,7 @@ export class MonumentUserAccountService {
   ): Promise<APIResponse> {
     const path = buildListUserAccountFiltering(filters);
 
-    return this.client.get(path, {
-      [HttpHeaders.COOKIE]: cookie,
-    });
+    return this.client.get(path, buildAuthHeaders(cookie));
   }
 
   createUserAccount(
@@ -33,7 +29,7 @@ export class MonumentUserAccountService {
     return this.client.post(
       MonumentEndpoints.USER_ACCOUNT.BASE,
       payload,
-      { [HttpHeaders.COOKIE]: cookie }
+      buildAuthHeaders(cookie)
     );
   }
 

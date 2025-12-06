@@ -1,10 +1,10 @@
 import { Page, Route } from '@playwright/test';
-import { HttpHeaders } from '../../integration/infra/http/constants/HttpHeaders';
 import { INetworkMock } from './INetworkMock';
 
 export class NetworkMockService implements INetworkMock {
     private registeredRoutes: Map<string, (route: Route) => Promise<void>> = new Map();
     private static readonly DEFAULT_CONTENT_TYPE = 'application/json';
+    private static readonly CONTENT_TYPE_HEADER = 'content-type';
 
     constructor(private page: Page) { }
 
@@ -44,7 +44,7 @@ export class NetworkMockService implements INetworkMock {
         const handler = async (route: Route) => {
             const response = await route.fetch();
             const body = await response.text();
-            const contentTypeHeader = response.headers()[HttpHeaders.CONTENT_TYPE.toLowerCase()] || NetworkMockService.DEFAULT_CONTENT_TYPE;
+            const contentTypeHeader = response.headers()[NetworkMockService.CONTENT_TYPE_HEADER] || NetworkMockService.DEFAULT_CONTENT_TYPE;
 
             await route.fulfill({
                 status,
