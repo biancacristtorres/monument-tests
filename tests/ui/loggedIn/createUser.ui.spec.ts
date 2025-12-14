@@ -45,7 +45,7 @@ test.describe('[ @ui @userAccount @create ] User management', () => {
         await userPermissionsPage.addUserModal.checkFacilityByName(facility.facilityName);
         await userPermissionsPage.addUserModal.enterEmail(faker.internet.email());
 
-
+0
         await networkMock.mockRequestStatusOnly(`**${MonumentEndpoints.USER_ACCOUNT.BASE}`,
             201
         );
